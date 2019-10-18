@@ -13,7 +13,7 @@ import { IonicStorageModule } from '@ionic/storage';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    IonicStorageModule
+    IonicStorageModule.forRoot()
 
   ]
 })
