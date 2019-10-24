@@ -11,6 +11,7 @@ import { AuthResponse } from  './auth-response';
   providedIn: 'root'
 })
 export class AuthService {
+  currUser = new BehaviorSubject<User>({})
   AUTH_SERVER_ADDRESS:  string  =  'http://localhost:3000';
   authSubject  =  new  BehaviorSubject(false);
 
@@ -24,6 +25,8 @@ export class AuthService {
           await this.storage.set("ACCESS_TOKEN", res.user.access_token);
           await this.storage.set("EXPIRES_IN", res.user.expires_in);
           this.authSubject.next(true);
+          this.currUser.next(res.user)
+          console.log(this.currUser)
         }
       })
 
@@ -38,7 +41,8 @@ export class AuthService {
           await this.storage.set("ACCESS_TOKEN", res.user.access_token);
           await this.storage.set("EXPIRES_IN", res.user.expires_in);
           this.authSubject.next(true);
-          console.log(res)
+          this.currUser.next(res.user)
+          console.log(this.currUser)
         }
       })
     );

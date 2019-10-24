@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>CreateEvent</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="EventFormgroup">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="10">
+          <ion-label>Event Name</ion-label>
+          <ion-input placeholder= "Event Name" type="text" formControlName="eventName"></ion-input>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="4">
+          <ion-label>Categories</ion-label>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6">
+          <app-select [options]="categoryOptions" [selectedValue]="EventFormgroup.value.categories"
+            (selectOption)="onSelect($event, 'categories')"></app-select>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6">
+          <ion-label>Sub Categories</ion-label>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6">
+          <app-select [options]="subCategoryOptions[EventFormgroup.value.categories]"
+            [selectedValue]="EventFormgroup.value.subCategories" (selectOption)="onSelect($event, 'subCategories')">
+          </app-select>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="10">
+          <ion-label>Venue:</ion-label>
+          <ion-input placeholder= "e.g: KLCC Park" type="text" formControlName="location"></ion-input>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-label>Date/Time:</ion-label>
+          <ion-datetime display-format="MMM D, YYYY h:mm A" picker-format="MMM D, YY h:mm A" value="{{currDate}}"
+            formControlName="dateTime"></ion-datetime>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="4">
+          <ion-label>Details</ion-label>
+          <ion-input placeholder="Event details" type="text" formControlName="details"></ion-input>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>
+
+<ion-footer>
+  <ion-button expand="block" (click)="onSubmit()" [disabled]="!isValid()">Next</ion-button>
+</ion-footer>

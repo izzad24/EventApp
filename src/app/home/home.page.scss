@@ -1,4 +1,25 @@
-.welcome-card img {
-  max-height: 35vh;
-  overflow: hidden;
+button[ion-fab] {
+  overflow: visible;
+  position: relative;
+
+  ion-icon {
+    height: 30px;
+    width: 30px;
+    border-radius: 4px;
+  }
+  ion-label {
+      position: absolute;
+      right: 50px;
+
+      color: white;
+      background-color: rgba(0,0,0,0.7);
+      line-height: 24px;
+      padding: 4px 8px;
+      border-radius: 4px;
+      min-width: 250px;
+  }
+}
+
+.fab{
+  contain: layout;
 }

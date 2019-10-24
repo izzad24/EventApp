@@ -1,5 +1,5 @@
 export interface AuthResponse {
-    user: {
+    user?: {
         id: number,
         name: string,
         email: string,

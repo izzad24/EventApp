@@ -1,0 +1,6 @@
+<ul style="list-style: none;padding-left: 10px">
+  <li *ngFor="let option of options" class="list-option" [class.selected]="selectedValue === option"
+    (click)="onSelectOption(option)">
+    {{option}}
+  </li>
+</ul>
