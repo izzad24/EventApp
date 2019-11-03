@@ -41,8 +41,8 @@ export class CreateEventPage implements OnInit {
   }
 
   onSubmit(){
-    let currUserValue = this.authService.currUser.getValue()
+    // let currUserValue = this.authService.currUser.getValue()
     this.eventService.setFormValues(this.EventFormgroup.value)
-    this.eventService.saveEventToDb(currUserValue)
+    this.eventService.saveEventToDb()
   }
 }

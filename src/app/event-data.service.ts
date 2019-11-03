@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Timestamp } from 'rxjs';
+import { BehaviorSubject, Timestamp, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from './auth/auth.service';
 import { User } from './auth/user'
@@ -20,31 +20,46 @@ interface EventForm {
 })
 export class EventDataService {
   currUser = new BehaviorSubject<User>({})
-
+  allEvent = new BehaviorSubject<EventForm[]>([])
   formValues = new BehaviorSubject<EventForm>({})
 
 
   constructor(public httpClient: HttpClient, private authService: AuthService) { }
 
   ngOnInit() {
-    // let userValue = this.authService.currUser.getValue()
-    // this.currUser.next(userValue)
-    // console.log(`event services currUser: ${this.currUser.getValue()}`)
   }
 
   setFormValues(formData) {
     this.formValues.next(formData)
   }
 
-  joinEvent() {
-
+  setCurrentUser(userData){
+    this.currUser.next(userData)
+    let data = this.currUser.getValue()
+    console.log(data)
   }
 
-  saveEventToDb(currUser) {
+  getAllEvent():EventForm[]{
+    let userData = this.currUser.getValue();
+    console.log("current user is : " + userData.name);
+    let url = `http://localhost:3000/users/${userData.id}`
+    this.httpClient.get(url).subscribe((response: EventForm[]) =>{
+      console.log(response)
+      this.allEvent.next(response)
+      console.log(this.allEvent.value)
+    })
+    return this.allEvent.value
+  }
+
+  joinEvent() {
+    
+  }
+
+  saveEventToDb() {
 
     console.log("save event called")
     let currentValue = this.formValues.getValue()
-    let userValue = currUser
+    let userValue = this.currUser.getValue()
     console.log(`event services currUser.id: ${userValue.id}`)
     let data = {
       "eventName": currentValue.eventName,

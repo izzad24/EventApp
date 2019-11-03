@@ -1,9 +1,22 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
     <ion-title>EventPage</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+    <ion-card >
+        <ion-card-header >
+          <ion-card-subtitle>{{selectedEvent.subCategories}}</ion-card-subtitle>
+          <ion-card-title>{{selectedEvent.eventName}}</ion-card-title>
+          <ion-card-content>
+            {{selectedEvent.location}}<br>
+            {{selectedEvent.dateTime}}<br>
+            {{selectedEvent.details}}<br>
+          </ion-card-content>
+        </ion-card-header>
+      </ion-card>
 </ion-content>

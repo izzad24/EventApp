@@ -17,7 +17,7 @@ const routes: Routes = [
   },
   { path: 'register', loadChildren: './auth/register/register.module#RegisterPageModule' },
   { path: 'login', loadChildren: './auth/login/login.module#LoginPageModule' },
-  { path: 'event', loadChildren: './event-page/event-page.module#EventPagePageModule' },
+  { path: 'event/:index', loadChildren: './event-page/event-page.module#EventPagePageModule' },
   { path: 'create', loadChildren: './create-event/create-event.module#CreateEventPageModule' }
 
 ];
